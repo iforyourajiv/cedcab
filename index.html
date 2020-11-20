@@ -45,14 +45,15 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <span class="form-label">Pickup</span>
-                                        <select name="pickup" class="form-control" aria-placeholder="Current Location">
-                                            <option>Charbagh</option>
-                                            <option>Indira Nagar</option>
-                                            <option>BBD</option>
-                                            <option>Barabanki</option>
-                                            <option>Faizabad</option>
-                                            <option>Basti</option>
-                                            <option>Gorakhpur</option>
+                                        <select id="pickup" name="pickup" class="form-control" aria-placeholder="Current Location">
+                                            <option>Select Pickup Location</option>
+                                            <option value="Charbagh">Charbagh</option>
+                                            <option value="Indira Nagar">Indira Nagar</option>
+                                            <option value="BBD">BBD</option>
+                                            <option value="Barabanki">Barabanki</option>
+                                            <option value="Faizabad">Faizabad</option>
+                                            <option value="Basti">Basti</option>
+                                            <option value="Gorakhpur"> Gorakhpur</option>
                                         </select>
                                         <span class="select-arrow"></span>
                                     </div>
@@ -62,14 +63,15 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <span class="form-label">Drop</span>
-                                        <select name="drop" class="form-control" aria-placeholder="Enter Drop For Ride Estimate">
-                                            <option>Charbagh</option>
-                                            <option>Indira Nagar</option>
-                                            <option>BBD</option>
-                                            <option>Barabanki</option>
-                                            <option>Faizabad</option>
-                                            <option>Basti</option>
-                                            <option>Gorakhpur</option>
+                                        <select id="drop" name="drop" class="form-control" aria-placeholder="Enter Drop For Ride Estimate">
+                                            <option>Select Drop Location</option>
+                                            <option value="Charbagh">Charbagh</option>
+                                            <option value="Indira Nagar">Indira Nagar</option>
+                                            <option value="BBD">BBD</option>
+                                            <option value="Barabanki">Barabanki</option>
+                                            <option value="Faizabad">Faizabad</option>
+                                            <option value="Basti">Basti</option>
+                                            <option value="Gorakhpur">Gorakhpur</option>
                                         </select>
                                         <span class="select-arrow"></span>
                                     </div>
@@ -80,22 +82,25 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <span class="form-label">Cab Type</span>
-                                        <select name="cabtype" class="form-control">
-                                            <option>CedMicro</option>
-                                            <option>Cedmini</option>
-                                            <option>CedRoyal</option>
-                                            <option>CedSUV</option>
-                                        </select>
+                                        <select id="cab" name="cabtype" class="form-control">
+                                            <option>Select Cab Type</option>
+                                            <option value="CedMicro">CedMicro</option>
+                                            <option value="CedMini">CedMini</option>
+                                            <option value="CedRoyal">CedRoyal</option>
+                                            <option value="CedSUV">CedSUV</option>
+                                            </select>
                                         <span class="select-arrow"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <span class="form-label">Luggage</span>
-                                <input class="form-control" type="number" name="weight" placeholder="Enter Weight in KG">
+                                <input class="form-control" id="luggage" type="number" name="weight" placeholder="Enter Weight in KG">
                             </div>
+                            <h4 id="calculatedPrice">
+                            </h4>
                             <div class="form-group my-3">
-                                <input class="btn btn-sm btn-block" type="submit" value="Calculate Fare">
+                                <input class="btn btn-sm btn-block" type="button" id="submitbtn" value="Calculate Fare">
                             </div>
                         </form>
                     </div>
@@ -120,8 +125,37 @@
         </footer>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="script.js">
+</script>
+<script>
+    $(document).ready(function() {
+        $('#submitbtn').click(function() {
+            let pickup = $("#pickup").children("option:selected").val();
+            let drop = $("#drop").children("option:selected").val();
+            let cabType = $("#cab").children("option:selected").val();
+            let luggage = $("#luggage").val();
+            if (pickup == "" || drop == "" || cabType == "") {
+                alert("Plz fill All the Fields");
+            } else {
+                $.ajax({
+                        method: "POST",
+                        url: "calculate.php",
+                        data: {
+                            pickup: pickup,
+                            drop: drop,
+                            cabType: cabType,
+                            luggage: luggage,
+                        }
+                    })
+                    .done(function(data) {
+                        $("#calculatedPrice").html("Total Fare &nbsp;	&#x20B9;" + data);
+                    });
+            }
+
+        })
+    })
+</script>
 
 </html>
