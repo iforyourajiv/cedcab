@@ -10,8 +10,8 @@ $cabType = $_POST['cabType'];
 $luggage = $_POST['luggage'];
 
 //Global Variable
-$pickupDistance = "";
-$dropDistance = "";
+$pickupDistance =0;
+$dropDistance =0;
 $luggageTotal = 0;
 
 //Matching pickup and Drop location and fetching Distance 

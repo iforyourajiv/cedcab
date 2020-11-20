@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <span class="form-label">Pickup</span>
                                         <select id="pickup" name="pickup" class="form-control" aria-placeholder="Current Location">
-                                            <option>Select Pickup Location</option>
+                                            <option value="">Select Pickup Location</option>
                                             <option value="Charbagh">Charbagh</option>
                                             <option value="Indira Nagar">Indira Nagar</option>
                                             <option value="BBD">BBD</option>
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <span class="form-label">Drop</span>
                                         <select id="drop" name="drop" class="form-control" aria-placeholder="Enter Drop For Ride Estimate">
-                                            <option>Select Drop Location</option>
+                                            <option value="">Select Drop Location</option>
                                             <option value="Charbagh">Charbagh</option>
                                             <option value="Indira Nagar">Indira Nagar</option>
                                             <option value="BBD">BBD</option>
@@ -83,7 +83,7 @@
                                     <div class="form-group">
                                         <span class="form-label">Cab Type</span>
                                         <select id="cab" name="cabtype" class="form-control">
-                                            <option>Select Cab Type</option>
+                                            <option value="">Select Cab Type</option>
                                             <option value="CedMicro">CedMicro</option>
                                             <option value="CedMini">CedMini</option>
                                             <option value="CedRoyal">CedRoyal</option>
@@ -94,14 +94,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <span class="form-label">Luggage</span>
-                                <input class="form-control" id="luggage" type="number" name="weight" placeholder="Enter Weight in KG">
+                                <span class="form-label">Luggage (Kg)</span>
+                                <input class="form-control" id="luggage" type="number" value="0" name="weight" placeholder="Enter Weight in KG">
                             </div>
                             <h4 id="calculatedPrice">
                             </h4>
-                            <div class="form-group my-3">
-                                <input class="btn btn-sm btn-block" type="button" id="submitbtn" value="Calculate Fare">
+                            <div class="row my-3">
+                                <div class="col-sm-12">
+                                    <input class="btn btn-block" type="button" id="submitbtn" value="Calculate Fare">
+                                </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

@@ -2,7 +2,6 @@ $(document).ready(function() {
     $("select#cab").change(function() {
         var type = $(this).children("option:selected").val();
         if (type == "CedMicro") {
-            $("#luggage").val("");
             $("#luggage").attr('disabled', 'disabled');
         } else {
             $("#luggage").removeAttr('disabled');
