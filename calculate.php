@@ -29,7 +29,10 @@ foreach ($db as $key => $value)
 $totalDistance = abs($dropDistance - $pickupDistance);
 
 //Calculating Luggage
-if ($luggage <= 10)
+if($luggage==0){
+    $luggageTotal =0;
+}
+else if ($luggage>0 && $luggage <= 10)
 {
     $luggageTotal = 50;
 }
@@ -45,7 +48,7 @@ else
 
 
 //Calculating Fare For Cedmicro
-if ($cabType == "CedMicro")
+if ($cabType == 'CedMicro')
 {
     $fixedfare = 50;
     if ($totalDistance <= 10)
@@ -80,7 +83,7 @@ if ($cabType == "CedMicro")
 
 
 //Calculating Fare For CedMini
-if ($cabType == "CedMini")
+if ($cabType == 'CedMini')
 {
     $fixedfare = 150;
     if ($totalDistance <= 10)
@@ -119,7 +122,7 @@ if ($cabType == "CedMini")
 }
 
 //Calculating Fare For CedRoyal
-if ($cabType == "CedRoyal")
+if ($cabType == 'CedRoyal')
 {
     $fixedfare = 200;
     if ($totalDistance <= 10)
@@ -159,7 +162,7 @@ if ($cabType == "CedRoyal")
 
 
 //Calculating Fare For CedSUV
-if ($cabType == "CedSUV")
+if ($cabType == 'CedSUV')
 {
     $fixedfare = 250;
     if ($totalDistance <= 10)

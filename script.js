@@ -26,4 +26,8 @@ $(document).ready(function() {
             .siblings()
             .removeAttr("disabled");
     });
+
+    $("#luggage").keyup(function(e) {
+        this.value = this.value.replace(/[^0-9\.]/, '');
+    });
 });
